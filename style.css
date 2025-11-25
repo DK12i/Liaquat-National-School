@@ -1,0 +1,856 @@
+/* Custom Fonts: Poppins for headings/strong, Lato for body text */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700;800&display=swap');
+
+/* --- Modern Variables & Colors (Refined Palette) --- */
+:root {
+    --primary-color: #0d47a1; /* Deeper, rich blue */
+    --primary-light: #1976d2;
+    --accent-color: #ff8f00; /* Warm, inviting orange */
+    --accent-dark: #e65100;
+    --text-dark: #212121;
+    --text-light: #424242;
+    --bg-light: #f8f9fa; /* Off-white for clean sections */
+    --bg-gray: #eceff1; /* Light gray for subtle contrast */
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* General Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.7;
+    color: var(--text-light);
+    background-color: var(--bg-light);
+    overflow-x: hidden; /* Prevents horizontal scroll from animations */
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-light);
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+    transform: translateY(-1px);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 3.5em; /* Larger, more impactful */
+    font-weight: 800;
+    margin-bottom: 0.5em;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 1em;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 0.8em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mt-4 { margin-top: 2rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+
+/* --- Header & Navigation --- */
+header {
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.school-logo {
+    width: 80px; /* Even larger, more prominent logo */
+    height: auto;
+    background-color: white;
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bounce effect */
+}
+
+.school-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 35px;
+}
+
+nav ul li a {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding: 10px 0;
+    position: relative;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Slightly below the text */
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+nav ul li a.active {
+    color: var(--accent-color);
+}
+
+/* --- Main Content Layout --- */
+main {
+    padding: 40px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    background-color: white;
+    padding: 50px; /* More padding for spacious feel */
+    margin-bottom: 40px;
+    border-radius: 15px; /* Softer rounded corners */
+    box-shadow: var(--shadow-light);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease; /* Smooth, slightly bouncy animation */
+    opacity: 0;
+    transform: translateY(30px);
+    position: relative; /* For potential background effects */
+    overflow: hidden; /* Ensures any internal effects stay within bounds */
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* Heading with modern separator */
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.section-heading h2 {
+    margin-bottom: 10px;
+    display: inline-block;
+    padding-bottom: 10px;
+    position: relative;
+    z-index: 1; /* Ensure text is above pseudo-element */
+}
+
+.section-heading h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+
+/* --- Home Page Specific Styles --- */
+.hero {
+    text-align: center;
+    padding: 100px 30px; /* More vertical space */
+    background: linear-gradient(135deg, rgba(13, 71, 161, 0.9) 0%, rgba(25, 118, 210, 0.8) 100%), url('school-building-placeholder.jpg') no-repeat center center/cover;
+    color: white;
+    border-radius: 15px;
+    box-shadow: var(--shadow-hover); /* Stronger shadow for hero */
+    transform: none;
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle background overlay animation for hero */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulseBackground 8s infinite alternate ease-in-out;
+}
+
+@keyframes pulseBackground {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.03); opacity: 1; }
+}
+
+
+.hero h1 {
+    color: white; /* White heading for contrast */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.3em;
+}
+
+.hero .tagline {
+    font-size: 1.6em; /* More prominent tagline */
+    font-weight: 300;
+    margin-bottom: 50px;
+    opacity: 0.9;
+}
+
+.hero button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    font-size: 1.2em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.3);
+    transform: skewX(-30deg);
+    transition: all 0.5s ease;
+}
+
+.hero button:hover::after {
+    left: 100%;
+}
+
+.hero button:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.owner-message {
+    text-align: center;
+}
+
+.owner-content {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center; /* Center items when wrapped */
+    align-items: center;
+    gap: 50px; /* More space */
+    margin-top: 40px;
+    text-align: left;
+}
+
+.owner-pic {
+    width: 200px; /* Larger image */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid var(--primary-color);
+    box-shadow: 0 0 0 10px rgba(var(--accent-color), 0.3), var(--shadow-hover);
+    flex-shrink: 0;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.owner-pic:hover {
+    transform: scale(1.08) rotate(-3deg);
+    border-color: var(--accent-color);
+}
+
+.owner-text {
+    flex-grow: 1; /* Allows text to take available space */
+    max-width: 600px; /* Constrain text width */
+    font-size: 1.1em;
+}
+
+.owner-text p:last-child {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 15px;
+}
+
+.about-school ul {
+    list-style: none;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; /* More spacing */
+    margin-top: 30px;
+}
+
+.about-school ul li {
+    background: linear-gradient(145deg, var(--bg-gray), #e0e0e0);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 5px solid var(--accent-color);
+    box-shadow: var(--shadow-light);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-school ul li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--primary-color), 0.05);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease-out;
+    border-radius: 12px;
+}
+
+.about-school ul li:hover::before {
+    transform: scaleY(1);
+}
+
+.about-school ul li:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    border-bottom-color: var(--primary-color);
+    color: var(--text-dark); /* Ensure text stays readable */
+}
+
+/* --- Gallery Specific Styles --- */
+.media-section h3 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.photo-grid, .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.photo-grid img, .video-grid iframe {
+    width: 100%;
+    height: 250px; /* Consistent height */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease; /* Springy hover */
+    cursor: pointer;
+}
+
+.photo-grid img:hover, .video-grid iframe:hover {
+    transform: scale(1.07) rotate(1deg); /* Slight rotation on hover */
+    box-shadow: var(--shadow-hover);
+    z-index: 1; /* Bring to front */
+}
+
+/* --- Admissions Specific Styles --- */
+.admissions-steps ol {
+    padding-left: 25px;
+    margin-top: 25px;
+}
+
+.admissions-steps ol li {
+    margin-bottom: 15px;
+    font-size: 1.15em;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.admissions-contact {
+    margin-top: 40px;
+    padding: 35px;
+    background: linear-gradient(45deg, #e3f2fd, #bbdefb); /* Gradient background */
+    border: 1px solid #90caf9;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+
+.admissions-contact:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+}
+
+.admissions-contact p strong {
+    color: var(--primary-color);
+}
+
+/* --- Contact Specific Styles --- */
+.contact-form-container form {
+    display: grid;
+    gap: 25px; /* More spacing */
+    max-width: 700px;
+    margin: 0 auto 40px;
+    padding: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: var(--shadow-light);
+}
+
+.contact-form-container input[type="text"],
+.contact-form-container input[type="email"],
+.contact-form-container textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Softer inputs */
+    font-size: 1.05em;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form-container input:focus,
+.contact-form-container textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(var(--accent-color), 0.3); /* Accent ring on focus */
+    outline: none;
+    background-color: white;
+}
+
+.contact-form-container textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form-container button {
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 1.15em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form-container button:hover {
+    background: linear-gradient(90deg, var(--primary-light) 0%, var(--primary-color) 100%);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.location-map iframe {
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    height: 500px; /* Taller map */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.location-map iframe:hover {
+    transform: scale(1.01);
+    box-shadow: var(--shadow-hover);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #263238; /* Darker, sophisticated footer */
+    color: #cfd8dc;
+    text-align: center;
+    padding: 25px;
+    font-size: 0.9em;
+    margin-top: 40px;
+    border-top: 3px solid var(--accent-color);
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 992px) {
+    h1 { font-size: 3em; }
+    h2 { font-size: 2em; }
+    section { padding: 40px 30px; }
+    .owner-content { gap: 30px; }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 3%;
+    }
+    .school-logo { width: 70px; padding: 6px; }
+
+    nav {
+        margin-top: 20px;
+        width: 100%;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    nav ul li {
+        margin: 8px 12px;
+    }
+    nav ul li a {
+        padding: 5px 0;
+        font-size: 0.95em;
+    }
+
+    main { padding: 30px 3%; }
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 1.8em; }
+    
+    .hero { padding: 80px 20px; }
+    .hero .tagline { font-size: 1.3em; margin-bottom: 30px; }
+    .hero button { padding: 15px 35px; font-size: 1.1em; }
+
+    .owner-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    .owner-pic {
+        width: 160px;
+        height: 160px;
+        border: 6px solid var(--primary-color);
+        box-shadow: 0 0 0 8px rgba(var(--accent-color), 0.2), var(--shadow-light);
+    }
+    .owner-text {
+        max-width: 100%;
+        font-size: 1em;
+    }
+    
+    .about-school ul li {
+        padding: 25px;
+        font-size: 0.95em;
+    }
+
+    .photo-grid, .video-grid {
+        grid-template-columns: 1fr;
+    }
+    .photo-grid img, .video-grid iframe {
+        height: 200px;
+    }
+
+    .admissions-steps ol li {
+        font-size: 1.05em;
+    }
+    .admissions-contact { padding: 30px; }
+
+    .contact-form-container form { padding: 30px; }
+    .contact-form-container button { padding: 14px; font-size: 1.1em; }
+    .location-map iframe { height: 400px; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    section { padding: 25px 15px; }
+
+    .hero { padding: 60px 15px; }
+    .hero .tagline { font-size: 1em; margin-bottom: 25px; }
+    .hero button { padding: 12px 25px; font-size: 1em; }
+
+    .owner-pic { width: 120px; height: 120px; border-width: 5px; }
+    .owner-text { font-size: 0.95em; }
+    
+    .about-school ul li { padding: 20px; font-size: 0.9em; }
+
+    .photo-grid img, .video-grid iframe { height: 180px; }
+
+    .admissions-steps ol { padding-left: 15px; }
+    .admissions-steps ol li { font-size: 1em; }
+    .admissions-contact { padding: 20px; }
+
+    .contact-form-container form { padding: 25px; }
+    .contact-form-container input, .contact-form-container textarea { padding: 10px; }
+    .contact-form-container button { padding: 10px; font-size: 1em; }
+    .location-map iframe { height: 300px; }
+}
+
+/* --- New About Us Page Specific Styles --- */
+
+.about-hero {
+    background: linear-gradient(rgba(26, 35, 126, 0.95), rgba(26, 35, 126, 0.7)), url('school-interior-placeholder.jpg') no-repeat center center/cover;
+    background-attachment: scroll;
+    color: white; /* Ensure base text color is WHITE */
+    padding: 100px 20px;
+    border-radius: 15px;
+    text-align: center;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.about-hero h1 {
+    font-size: 3.8em;
+    color: white;
+    margin-bottom: 15px;
+    letter-spacing: 1.5px;
+}
+
+.about-hero .tagline {
+    font-size: 1.6em;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Story Section */
+.story-section {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    background-color: var(--background-secondary); /* Light gray background for contrast */
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+}
+
+.story-content {
+    flex: 2;
+    padding-right: 20px;
+}
+
+.story-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.story-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+    line-height: 1.8;
+}
+
+.story-image {
+    flex: 1;
+    text-align: center;
+}
+
+.story-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: var(--hover-shadow);
+    transition: transform 0.4s ease;
+}
+
+.story-image img:hover {
+    transform: scale(1.03);
+}
+
+/* Mission, Vision, Values Grid */
+.mission-vision-values {
+    background-color: white;
+}
+
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.principle-card {
+    background-color: #fcfcfc;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-bottom: 5px solid var(--accent-color);
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+}
+
+.principle-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--hover-shadow);
+    background-color: #fff;
+    border-bottom-color: var(--primary-color);
+}
+
+.principle-card .icon {
+    font-size: 3.5em; /* Larger, expressive icons */
+    display: block;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.principle-card:hover .icon {
+    transform: rotateY(360deg); /* Spinning icon effect */
+}
+
+.principle-card h3 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.principle-card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.principle-card ul li {
+    background-color: #e8f0fe; /* Light blue background for list items */
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    font-weight: 400;
+    color: var(--text-dark);
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 60px;
+    border-radius: 15px;
+    box-shadow: var(--hover-shadow);
+}
+
+.why-choose-us h2 {
+    color: var(--accent-color); /* Highlight heading with accent */
+    margin-bottom: 40px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.why-choose-us h2::before {
+    background-color: var(--text-light); /* Change accent bar color */
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.advantage-item {
+    background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent white card */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 30px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.advantage-item:hover {
+    transform: translateY(-8px);
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.advantage-icon {
+    font-size: 3em;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.advantage-item h3 {
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+.advantage-item p {
+    color: #e0e0e0; /* Lighter text for contrast */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 992px) {
+    .story-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .story-content {
+        padding-right: 0;
+    }
+    .story-image {
+        margin-top: 30px;
+    }
+    .about-hero h1 {
+        font-size: 3em;
+    }
+}
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 2.5em;
+    }
+    .about-hero .tagline {
+        font-size: 1.2em;
+    }
+    .story-section {
+        padding: 30px;
+    }
+    .principle-card, .advantage-item {
+        padding: 25px;
+    }
+    .why-choose-us {
+        padding: 40px 30px;
+    }
+}
